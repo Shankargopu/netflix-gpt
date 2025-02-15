@@ -1,3 +1,13 @@
+# NETFLIX GPT
+- npm i create vite@latest
+- Configured TailwindCSS
+- Header
+- Routing of APP
+- Login Form
+- Sign up Form
+- Form Validation
+- useRef Hook
+
 # Features
 - Login / Signup
    - Sign In / Sign up Form
