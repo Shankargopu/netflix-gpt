@@ -4,6 +4,8 @@ import { createUser, signInUser } from "../utils/firebase_auth";
 import { validateForm, IValidateForm } from "../utils/validateForm";
 import { FirebaseError } from "firebase/app";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 interface IFormValidation {
   email?: boolean;
@@ -11,7 +13,7 @@ interface IFormValidation {
 }
 
 const Login = (): JSX.Element => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showLearnMoreButton, setShowLearMoreButton] = useState(true);
   const [isSignIn, setIsSignIn] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -26,6 +28,8 @@ const Login = (): JSX.Element => {
   const emailRef: Ref<HTMLInputElement> = useRef(null);
   const passwordRef: Ref<HTMLInputElement> = useRef(null);
   const currentPasswordRef: Ref<HTMLInputElement> = useRef(null);
+  const nameRef: Ref<HTMLInputElement> = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,11 +59,28 @@ const Login = (): JSX.Element => {
           setLoading(true);
           const result = await createUser(
             emailRef.current?.value,
-            passwordRef.current?.value
+            passwordRef.current?.value,
+            nameRef.current?.value || ""
+          );
+          console.log(result);
+          if (!result) {
+            return "";
+          }
+          const { email, displayName, uid, photoURL } = result;
+
+          dispatch(
+            addUser({
+              name: displayName,
+              uid,
+              photoURL,
+              email,
+            })
           );
           setLoading(false);
+
           if (result) {
             alert("User successfully created");
+            navigate("/Browse");
           }
         } catch (err: unknown) {
           setLoading(false);
@@ -107,7 +128,7 @@ const Login = (): JSX.Element => {
     // 4️⃣ backgroundImage (inline style) → Applies the image as a background.
 
     <div
-      className="h-screen w-screen relative overflow-x-hidden bg-gradient-to-bl from-black bg-black"
+      className="h-screen w-screen overflow-x-hidden bg-gradient-to-bl from-black bg-black"
       // style={{
       //   backgroundImage: `url("https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_large.jpg")`,
       // }}
@@ -118,7 +139,7 @@ const Login = (): JSX.Element => {
         alt="image"
       />
       <div className="w-full flex flex-col">
-        <div className="flex justify-center">
+        <div className="flex justify-center relative">
           <div className="shadow-2xl z-100 bg-black/80 text-white/95 w-[30%] flex justify-center absolute bottom-0 h-[700px]">
             <div className="flex flex-col w-8/10 p-5">
               <div className="flex justify-start px-5 mt-10">
@@ -135,6 +156,7 @@ const Login = (): JSX.Element => {
                     className="px-4 py-6 flex-1 border border-slate-400"
                     type="text"
                     placeholder="Enter the Name"
+                    ref={nameRef}
                   />
                 )}
                 <div className="flex flex-col justify-center gap-1">

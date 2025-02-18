@@ -2,16 +2,34 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  Unsubscribe,
+  updateProfile,
 } from "firebase/auth";
+// import { User } from "firebase/auth";
 import app from "./firebase";
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
-export const createUser = (email: string, password: string) => {
+export const createUser = (email: string, password: string, name: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
-      return user;
+      if (!auth.currentUser) throw "no current user";
+      return updateProfile(user, {
+        displayName: name,
+        photoURL: null,
+      })
+        .then(() => {
+          console.log("profile updated");
+          console.log("curr user", auth.currentUser);
+          return auth.currentUser;
+        })
+        .catch((err) => {
+          throw err;
+        });
+
+      return auth.currentUser;
     })
     .catch((err) => {
       console.log(err);
@@ -29,4 +47,16 @@ export const signInUser = (email: string, password: string) => {
       console.log(err);
       throw err;
     });
+};
+
+export const onAuthChange = (): Unsubscribe => {
+  return onAuthStateChanged(auth, (user) => {
+    // const {uid, email, displayName} = user;
+    console.log("user.....", user);
+    if (user) {
+      console.log(user);
+      return user;
+    }
+    return null;
+  });
 };
