@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Header from "./Header";
 import { useEffect } from "react";
@@ -8,24 +8,29 @@ import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, name: displayName }));
+        console.log(user);
+        navigate("/Browse");
       } else {
         dispatch(removeUser());
+        navigate("/");
       }
     });
+    return () => unsubscribe();
   }, []);
   // const appRouter = createBrowserRouter([
   //   ,
   // ]);
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {/* <Login />
       <Browse /> */}
-      <Header/>
+      <Header />
       {/* {/* <RouterProvider router={appRouter} /> */}
       <Outlet />
     </div>

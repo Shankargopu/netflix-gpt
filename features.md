@@ -12,6 +12,20 @@
 - Create signup user
 - implement singIn user
 - Created redux store with user slice
+- Implemented Sign Out
+- Updated Profile
+- Bug fix : user can't move to the Browse without login and redirect to Browse if user already loggedin.
+- unsubscribe the onAuthStateChanged when the Body unmounts
+- Add hardcoded values to the constants file
+- Register TMDB API and create an app and get access token
+- Fetch Movies from TMDB now playing movies list API
+- Created Custom Hook for Now playing Movies
+- Created MoviesSlice
+- Updated store with the Movies Data
+- fetch data for trailer video
+- Updated the store with trailer video data
+- Embedded the youtbube video make it auto play and mute
+ 
 
 # Features
 - Login / Signup

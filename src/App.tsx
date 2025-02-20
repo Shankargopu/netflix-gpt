@@ -1,10 +1,13 @@
 import { Provider } from "react-redux";
 import "./App.css";
-import Body from "./components/Body";
+
 import appStore from "./utils/appStore";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./components/Form";
+// import Login from "./components/Form";
 import Browse from "./components/Browse";
+// import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/Form";
+import Body from "./components/Body";
 function App() {
   const appRouter = createBrowserRouter([
     {
@@ -17,8 +20,14 @@ function App() {
         },
         {
           path: "/Browse",
+          element: <Browse/>,
 
-          element: <Browse />,
+          // children: [
+          //   {
+          //     path: "/Browse",
+          //     element: <Browse />,
+          //   },
+          // ],
         },
       ],
     },

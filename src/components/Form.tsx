@@ -3,9 +3,10 @@ import { EyeOff, Eye, Loader } from "lucide-react";
 import { createUser, signInUser } from "../utils/firebase_auth";
 import { validateForm, IValidateForm } from "../utils/validateForm";
 import { FirebaseError } from "firebase/app";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { NETFLIX_IMG } from "../utils/constants";
 
 interface IFormValidation {
   email?: boolean;
@@ -29,7 +30,7 @@ const Login = (): JSX.Element => {
   const passwordRef: Ref<HTMLInputElement> = useRef(null);
   const currentPasswordRef: Ref<HTMLInputElement> = useRef(null);
   const nameRef: Ref<HTMLInputElement> = useRef(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +81,7 @@ const Login = (): JSX.Element => {
 
           if (result) {
             alert("User successfully created");
-            navigate("/Browse");
+            // navigate("/Browse");
           }
         } catch (err: unknown) {
           setLoading(false);
@@ -104,7 +105,7 @@ const Login = (): JSX.Element => {
           setLoading(false);
           if (result) {
             alert("User successfully SignedIn");
-            navigate("/Browse");
+            // navigate("/Browse");
           }
         } catch (err: unknown) {
           setLoading(false);
@@ -135,7 +136,7 @@ const Login = (): JSX.Element => {
     >
       <img
         className="w-screen max-h-screen bg-center bg-cover bg-blend-multiply bg-black"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_large.jpg"
+        src={NETFLIX_IMG}
         alt="image"
       />
       <div className="w-full flex flex-col">
