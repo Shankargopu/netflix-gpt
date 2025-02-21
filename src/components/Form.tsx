@@ -44,7 +44,6 @@ const Login = (): JSX.Element => {
       email: validateInput.isEmailvalid,
       password: validateInput.isPasswordValid,
     });
-    // console.log(validateInput);
     if (
       validateInput.isEmailvalid &&
       validateInput.isPasswordValid &&
@@ -63,7 +62,6 @@ const Login = (): JSX.Element => {
             passwordRef.current?.value,
             nameRef.current?.value || ""
           );
-          console.log(result);
           if (!result) {
             return "";
           }

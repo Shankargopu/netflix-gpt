@@ -14,7 +14,6 @@ const Body = () => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, name: displayName }));
-        console.log(user);
         navigate("/Browse");
       } else {
         dispatch(removeUser());

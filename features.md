@@ -25,7 +25,11 @@
 - fetch data for trailer video
 - Updated the store with trailer video data
 - Embedded the youtbube video make it auto play and mute
- 
+- added the secondary container
+- added the moviesList component
+- added the movieCard Compoent
+- added the customHooks for now playing, popular, top rated and upcoming movies and added the data in the store
+- improved css
 
 # Features
 - Login / Signup

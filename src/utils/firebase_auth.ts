@@ -14,22 +14,20 @@ export const createUser = (email: string, password: string, name: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
+
       if (!auth.currentUser) throw "no current user";
       return updateProfile(user, {
         displayName: name,
         photoURL: null,
       })
         .then(() => {
-          console.log("profile updated");
-          console.log("curr user", auth.currentUser);
           return auth.currentUser;
         })
         .catch((err) => {
           throw err;
         });
 
-      return auth.currentUser;
+      //   return auth.currentUser;
     })
     .catch((err) => {
       console.log(err);
@@ -52,7 +50,7 @@ export const signInUser = (email: string, password: string) => {
 export const onAuthChange = (): Unsubscribe => {
   return onAuthStateChanged(auth, (user) => {
     // const {uid, email, displayName} = user;
-    console.log("user.....", user);
+
     if (user) {
       console.log(user);
       return user;

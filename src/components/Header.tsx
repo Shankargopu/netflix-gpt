@@ -11,19 +11,17 @@ const Header = () => {
   const handleSignOut = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     signOut(auth)
-      .then(() => {
-        console.log("signed out");
-      })
+      .then(() => {})
       .catch((err) => {
         console.log(err);
       });
   };
 
   return (
-    <div className="shadow-2xl z-100 bg-gradient-to-r from-black/40">
+    <div>
       {/* {isLogin && ( */}
       {user && (
-        <div className="aspect-video absolute right-25 top-3 flex items-center text-[16px] z-10">
+        <div className="absolute right-25 top-6 flex items-center text-[16px] z-10">
           <button className=" text-white" onClick={handleSignOut}>
             <UserIcon size={24} color="red" />
           </button>
