@@ -7,8 +7,9 @@ const MovieList = ({
   movies,
 }: {
   title: string;
-  movies: [{ poster_path: string }];
+  movies: [{ poster_path: string; id: string }];
 }) => {
+  // console.log(movies[0]);
   return (
     <div className="py-3 px-5 overflow-hidden text-white">
       <div>
@@ -17,8 +18,11 @@ const MovieList = ({
           {movies &&
             movies.length &&
             movies.map((movie) => (
-              <div>
-                <MovieCard image={image_path + movie.poster_path} />
+              <div key={movie.id}>
+                <MovieCard
+                  // key={`${Math.random()}`}
+                  image={image_path + movie.poster_path}
+                />
               </div>
             ))}
         </div>

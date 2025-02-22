@@ -30,6 +30,12 @@
 - added the movieCard Compoent
 - added the customHooks for now playing, popular, top rated and upcoming movies and added the data in the store
 - improved css
+- GPT search Feature
+- GPT search Page
+- GPT search Bar
+- multi language Feature (lang slice)
+- Integrate GPT API's
+
 
 # Features
 - Login / Signup

@@ -2,11 +2,20 @@ import { UserIcon } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { MouseEvent } from "react";
 import { auth } from "../utils/firebase_auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
+import { toggleGpt } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/langSlice";
+import { lang } from "../utils/languageConstan";
+import { supportedLanguages } from "../utils/constants";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((store: RootState) => store.user);
+  const { active } = useSelector((store: RootState) => store.gpt);
+  const language = useSelector(
+    (store: RootState) => store.lang.lang
+  ) as keyof typeof lang;
 
   const handleSignOut = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -22,10 +31,40 @@ const Header = () => {
       {/* {isLogin && ( */}
       {user && (
         <div className="absolute right-25 top-6 flex items-center text-[16px] z-10">
-          <button className=" text-white" onClick={handleSignOut}>
-            <UserIcon size={24} color="red" />
+          <button
+            className="text-white bg-red-600 px-6 py-2 cursor-pointer hover:bg-red-500 mr-3 rounded-lg hover:border-none"
+            onClick={() => {
+              dispatch(toggleGpt());
+            }}
+          >
+            {active ? lang[language].BrowseContent : lang[language].GPTSearch}
           </button>
-          <span className="text-red-500 text-sm"> Sign Out</span>
+          <div className="bg-red-600 text-white flex items-center px-6 py-2 rounded-lg cursor-pointer  hover:bg-red-500">
+            <button onClick={handleSignOut}>
+              <UserIcon size={24} />
+            </button>
+            <span className="text-sm font-bold">({lang[language].logout})</span>
+          </div>
+
+          {active && (
+            <select
+              className="px-6 py-2 text-white focus:ring-0 border-none outline-none bg-red-600 m-4 rounded-lg"
+              defaultValue={language}
+              onChange={(e) => {
+                dispatch(changeLanguage(e.target.value));
+              }}
+            >
+              {/* <option value={language} disabled>
+                Select Language
+              </option> */}
+
+              {supportedLanguages.map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang}
+                </option>
+              ))}
+            </select>
+          )}
           {/* )} */}
         </div>
       )}

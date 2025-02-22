@@ -5,8 +5,13 @@ import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
+import { RootState } from "../utils/appStore";
 
 const Browse = () => {
+  const { active } = useSelector((store: RootState) => store.gpt);
+
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
@@ -15,6 +20,13 @@ const Browse = () => {
   return (
     <div>
       <Header />
+      {active ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer /> <SecondaryContainer />
+        </>
+      )}
       {/* 
        MainContainer
         - VideoBackground
@@ -24,9 +36,6 @@ const Browse = () => {
           - cards * n (lof of card as movied) 
        
       */}
-
-      <MainContainer />
-      <SecondaryContainer />
     </div>
   );
 };
