@@ -34,8 +34,11 @@
 - GPT search Page
 - GPT search Bar
 - multi language Feature (lang slice)
-- Integrate GPT API's
-
+- Integrated GPT API's
+- Integrated open API
+- Integrated movie suggestion with the help of open API
+- added movieName and search results to the gpt slice
+- added secrets to .env
 
 # Features
 - Login / Signup

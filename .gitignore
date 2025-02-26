@@ -26,3 +26,5 @@ dist-ssr
 README.md
 
 firebase.ts
+
+.env

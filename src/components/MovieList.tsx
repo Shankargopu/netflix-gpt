@@ -19,10 +19,12 @@ const MovieList = ({
             movies.length &&
             movies.map((movie) => (
               <div key={movie.id}>
-                <MovieCard
-                  // key={`${Math.random()}`}
-                  image={image_path + movie.poster_path}
-                />
+                {movie.poster_path && (
+                  <MovieCard
+                    // key={`${Math.random()}`}
+                    image={image_path + movie.poster_path}
+                  />
+                )}
               </div>
             ))}
         </div>

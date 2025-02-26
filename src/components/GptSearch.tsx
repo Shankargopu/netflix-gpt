@@ -7,7 +7,7 @@ const GptSearch = () => {
   return (
     <div>
       <div
-        className="absolute h-screen w-screen -z-10"
+        className="fixed h-screen w-screen -z-10"
         // style={{
         //   backgroundImage: `url("https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_large.jpg")`,
         // }}

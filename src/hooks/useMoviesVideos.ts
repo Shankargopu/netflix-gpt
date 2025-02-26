@@ -16,6 +16,7 @@ const useMoviesVideos = (id: string) => {
   }, []);
 
   const getMovieVideos = async () => {
+    await fetch
     const data = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
       options
