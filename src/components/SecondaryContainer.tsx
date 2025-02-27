@@ -21,7 +21,7 @@ const SecondaryContainer = () => {
       MovieList - Horror 
       
       */}
-        <div className="-mt-64 relative z-10">
+        <div className="-mt-7 md:-mt-64 relative z-10">
           <MovieList
             key={"Now Playing Movies"}
             title="Now Playing Movies"

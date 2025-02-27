@@ -39,6 +39,7 @@
 - Integrated movie suggestion with the help of open API
 - added movieName and search results to the gpt slice
 - added secrets to .env
+- added resposiveness to the site
 
 # Features
 - Login / Signup

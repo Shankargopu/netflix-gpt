@@ -3,7 +3,9 @@ import { RootState } from "../utils/appStore";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
+
 const MainContainer = () => {
+  // useNowPlayingMovies();
   const movies = useSelector(
     (store: RootState) => store.movies?.nowPlayingMovies
   );
@@ -11,7 +13,7 @@ const MainContainer = () => {
   const mainMovie = movies[2];
   const { original_title, overview, id } = mainMovie;
   return (
-    <div>
+    <div className="pt-[35%] bg-black md:pt-0">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground id={id} />
     </div>

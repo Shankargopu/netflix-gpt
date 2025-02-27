@@ -3,10 +3,11 @@ import { RootState } from "../utils/appStore";
 import MovieList from "./MovieList";
 
 const GptSuggestions = () => {
-  const { gptSearchMovies, movieNames } = useSelector(
+  const { gptSearchMovies = [], movieNames = [] } = useSelector(
     (store: RootState) => store.gpt
   );
-  console.log(gptSearchMovies, movieNames);
+  if (!gptSearchMovies) return null;
+
   return (
     <div className="text-white mt-10 p-10 bg-black/50">
       <div>
@@ -14,7 +15,7 @@ const GptSuggestions = () => {
           movieNames.map(
             (movie, index) =>
               movie &&
-              gptSearchMovies[index] && gptSearchMovies[index][0].poster_path && (
+              gptSearchMovies[index] && (
                 <MovieList
                   key={movie}
                   title={movie}

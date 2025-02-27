@@ -8,11 +8,20 @@ import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
+import { useEffect } from "react";
 
 const Browse = () => {
+
   const { active } = useSelector((store: RootState) => store.gpt);
 
-  useNowPlayingMovies();
+  useEffect(()=>{
+
+    return ()=>{
+      console.log("unmouting")
+    }
+  },[])
+
+  useNowPlayingMovies()
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();

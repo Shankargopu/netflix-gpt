@@ -133,26 +133,26 @@ const Login = (): JSX.Element => {
       // }}
     >
       <img
-        className="w-screen max-h-screen bg-center bg-cover bg-blend-multiply bg-black"
+        className="w-screen h-screen object-cover md:max-h-screen bg-center bg-cover bg-blend-multiply bg-black"
         src={NETFLIX_IMG}
         alt="image"
       />
       <div className="w-full flex flex-col">
         <div className="flex justify-center relative">
-          <div className="shadow-2xl z-100 bg-black/80 text-white/95 w-[30%] flex justify-center absolute bottom-0 h-[700px]">
-            <div className="flex flex-col w-8/10 p-5">
-              <div className="flex justify-start px-5 mt-10">
-                <h2 className="text-4xl font-bold">
+          <div className="shadow-2xl z-100 bg-black/80 text-white/95 w-[70%] md:w-[30%] flex justify-center absolute bottom-0 h-[650px]  md:h-[700px]">
+            <div className="flex flex-col w-full md:w-8/10 p-5">
+              <div className="flex justify-start px-0 mt-0 md:px-5 md:mt-10">
+                <h2 className="text-2xl md:text-4xl font-bold">
                   {isSignIn ? "Sign In" : "Sign Up"}
                 </h2>
               </div>
               <form
-                className="flex flex-col gap-6 pt-10 pb-3 px-5 font-medium text-xl"
+                className="flex flex-col gap-6 pt-5 md:pt-10 pb-3 px-0 md:px-5 font-medium text-xl"
                 onSubmit={handleSubmit}
               >
                 {!isSignIn && (
                   <input
-                    className="px-4 py-6 flex-1 border border-slate-400"
+                    className="px-4 py-2 md:py-6 flex-1 border border-slate-400 text-[15px]"
                     type="text"
                     placeholder="Enter the Name"
                     ref={nameRef}
@@ -160,7 +160,7 @@ const Login = (): JSX.Element => {
                 )}
                 <div className="flex flex-col justify-center gap-1">
                   <input
-                    className="px-4 py-6 w-full border border-slate-400"
+                    className="px-4 py-2 md:py-6 w-full border border-slate-400 text-[15px]"
                     ref={emailRef}
                     type="text"
                     placeholder="Enter Email"
@@ -186,7 +186,7 @@ const Login = (): JSX.Element => {
                     }}
                   />
                   {!validateInput?.isEmailvalid && !formValidation.email && (
-                    <p className="text-red-500/90 text-lg">
+                    <p className="text-red-500/90 text-sm md:text-lg">
                       Please enter a valid email address
                     </p>
                   )}
@@ -194,7 +194,7 @@ const Login = (): JSX.Element => {
                 <div>
                   <div className="flex border border-slate-400 flex-1 relative">
                     <input
-                      className="px-4 py-6 active:border-none focus:outline-0 w-11/12"
+                      className="px-4 py-2 md:py-6 active:border-none focus:outline-0 w-11/12 text-[15px]"
                       ref={passwordRef}
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter Password"
@@ -229,18 +229,22 @@ const Login = (): JSX.Element => {
                       }}
                     />
                     <button
-                      className="absolute top-7 right-3"
+                      className="absolute top-1.5 md:top-7 right-3"
                       onClick={(e) => {
                         e.preventDefault();
                         setShowPassword(!showPassword);
                       }}
                     >
-                      {showPassword ? <Eye size={24} /> : <EyeOff size={24} />}
+                      {showPassword ? (
+                        <Eye className="w-5 md:w-6" />
+                      ) : (
+                        <EyeOff className="w-5 md:w-6" />
+                      )}
                     </button>
                   </div>
                   {!validateInput?.isPasswordValid &&
                     !formValidation?.password && (
-                      <p className="text-red-500/90 text-lg">
+                      <p className="text-red-500/90 text-sm md:text-lg">
                         Enter a valid password with atleast 8 chars including 1
                         special char and 1 upper case letter and a digit
                       </p>
@@ -252,7 +256,7 @@ const Login = (): JSX.Element => {
                     <div className="flex border border-slate-400 flex-1 relative">
                       <input
                         ref={currentPasswordRef}
-                        className="px-4 py-6 active:border-none focus:outline-0 w-11/12"
+                        className="px-4 py-2 md:py-6 active:border-none focus:outline-0 w-11/12 text-[15px]"
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Password"
                         onChange={(e) => {
@@ -264,16 +268,16 @@ const Login = (): JSX.Element => {
                         }}
                       />
                       <button
-                        className="absolute top-7 right-3"
+                        className="absolute top-1.5 md:top-7 right-3"
                         onClick={(e) => {
                           e.preventDefault();
                           setShowConfirmPassword(!showConfirmPassword);
                         }}
                       >
                         {showConfirmPassword ? (
-                          <Eye size={24} />
+                          <Eye className="w-5 md:w-6" />
                         ) : (
-                          <EyeOff size={24} />
+                          <EyeOff className="w-5 md:w-6" />
                         )}
                       </button>
                     </div>
@@ -286,7 +290,7 @@ const Login = (): JSX.Element => {
                 )}
 
                 <button
-                  className="px-8 py-4 bg-[rgb(229,9,20)] hover:bg-[rgb(180,0,0)] rounded-sm font-medium cursor-pointer flex justify-center items-center disabled:pointer-events-none"
+                  className="py-2 md:px-8 md:py-4 bg-[rgb(229,9,20)] hover:bg-[rgb(180,0,0)] rounded-sm font-medium cursor-pointer flex justify-center items-center disabled:pointer-events-none text-[15px]"
                   type="submit"
                   disabled={!(formValidation.email && formValidation.password)}
                 >
@@ -300,27 +304,27 @@ const Login = (): JSX.Element => {
                 </button>
               </form>
 
-              <div className="mt-auto">
+              <div className="mt-0">
                 {isSignIn && (
-                  <div className="px-5">
+                  <div className="md:px-5">
                     <p className="text-center">OR</p>
-                    <button className="px-8 py-4 bg-gray-500/40 rounded-sm w-full hover:bg-gray-500/35 cursor-pointer">
+                    <button className="py-2 md:px-8 md:py-4 bg-gray-500/40 rounded-sm w-full hover:bg-gray-500/35 cursor-pointer">
                       Sign In with Code
                     </button>
                   </div>
                 )}
-                <div className="px-5 py-10 flex items-center text-xl">
-                  <p className="font-extralight">
+                <div className="md:px-5 py-5 md:py-10 md:flex md:items-center text-xl">
+                  <p className="font-extralight text-[15px]">
                     {isSignIn ? "New to Netflix?" : "Already Have An Account?"}
                   </p>
                   <button
-                    className="font-bold ml-2 hover:underline cursor-pointer"
+                    className="font-bold hover:underline cursor-pointer text-[15px]"
                     onClick={() => setIsSignIn(!isSignIn)}
                   >
                     {isSignIn ? "Sign up now" : "Sign In"}
                   </button>
                 </div>
-                <div className="text-base/6 text-gray-300 px-5 mb-[-5px]">
+                <div className="text-base/6 text-gray-300 px-5">
                   This page is protected by Google reCAPTCHA to ensure you're
                   not a bot.
                   {showLearnMoreButton && (
@@ -332,7 +336,7 @@ const Login = (): JSX.Element => {
                     </button>
                   )}
                   {!showLearnMoreButton && (
-                    <p className="mb-[-120px] mt-5">
+                    <p className="mt-5">
                       The information collected by Google reCAPTCHA is subject
                       to the Google Privacy Policy and Terms of Service, and is
                       used for providing, maintaining, and improving the
@@ -345,14 +349,14 @@ const Login = (): JSX.Element => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col  justify-center h-[60vh] text-white/80 gap-3 text-xl">
-          <div className="flex justify-start w-1/2 ml-60">
+        <div className="flex flex-col md:justify-center h-[60vh] text-white/80 gap-3 text-xl mt-50 md:mt-0">
+          <div className="flex justify-start md:w-1/2 ml-10 md:ml-60 mt-4 text-[15px]">
             <p>Questions?</p>
             <span className="ml-1">Call 000-800-919-1743</span>
           </div>
 
-          <div className="flex justify-start mt-5 w-9/12 ml-60">
-            <ul className=" w-full flex flex-wrap text-lg underline">
+          <div className="flex justify-start mt-5 w-9/12 md:ml-60 ml-10 text-[15px]">
+            <ul className=" w-full flex flex-wrap md:text-lg underline">
               <li className="mt-4 w-3/12 bg-black">
                 <a href="https://help.netflix.com/en/node/412">FAQ</a>
               </li>

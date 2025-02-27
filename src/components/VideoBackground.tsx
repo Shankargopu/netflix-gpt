@@ -9,7 +9,7 @@ const VideoBackground = ({ id }: { id: string }) => {
   useMoviesVideos(id);
 
   return (
-    <div className="-mt-28 bg-gradient-to-r aspect-video">
+    <div className="-mt-10 md:-mt-28 bg-gradient-to-r aspect-video">
       <div className="absolute bg-gradient-to-r from-black/15 inset-0"></div>
       {trailerData && (
         // <div className="w-full aspect-video">

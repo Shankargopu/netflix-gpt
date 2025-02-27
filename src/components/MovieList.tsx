@@ -11,9 +11,9 @@ const MovieList = ({
 }) => {
   // console.log(movies[0]);
   return (
-    <div className="py-3 px-5 overflow-hidden text-white">
+    <div className="py-3 px-0 md:px-5 overflow-hidden text-white">
       <div>
-        <h1 className="text-2xl ml-4">{title}</h1>
+        <h1 className="md:text-2xl ml-4">{title}</h1>
         <div className="flex overflow-x-scroll overflow-y-hidden gap-1">
           {movies &&
             movies.length &&

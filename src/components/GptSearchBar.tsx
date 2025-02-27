@@ -1,19 +1,17 @@
 import React, { useRef } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../utils/appStore";
 import { lang } from "../utils/languageConstan";
 import openai from "../utils/openAI";
 import { options } from "../utils/constants";
 import { addGptSearchMovies } from "../utils/gptSlice";
-import GptSuggestions from "./GptSuggestions";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const language = useSelector(
     (store: RootState) => store.lang.lang
   ) as keyof typeof lang;
-  const { movieNames } = useSelector((store: RootState) => store.gpt);
+ 
   const searchText = useRef<HTMLInputElement>(null);
 
   const searchMovieTmdb = async (movie: string) => {
@@ -53,19 +51,19 @@ const GptSearchBar = () => {
 
   return (
     <>
-      <div className="flex pt-[10%] justify-center">
+      <div className="flex pt-[40%] justify-center md:pt-[10%]">
         <form
-          className="w-1/2 flex gap-3 bg-black"
+          className="w-10/12 md:w-1/2 flex md:gap-3 bg-black"
           onSubmit={(e) => e.preventDefault()}
         >
           <input
-            className="border border-black-300 m-4 p-4 focus:outline-none ring-0 rounded-lg w-10/12 bg-white"
+            className="border border-black-300 m-2 p-1 md:m-4 md:p-4 focus:outline-none ring-0 md:rounded-lg w-full bg-white text-[10px] md:text-[15px]"
             type="text"
             placeholder={lang[language].gptSearchPlaceHolder}
             ref={searchText}
           />
           <button
-            className="px-6 py-2 w-2/12 m-4 bg-red-500 cursor-pointer rounded-lg hover:bg-red-400 text-white"
+            className="p-2 md:px-6 md:py-2 w-2/12 text-[10px] md:text-[15px] m-2 md:m-4 bg-red-500 cursor-pointer rounded-sm md:rounded-lg hover:bg-red-400 text-white"
             onClick={handleGptSearch}
             type="submit"
           >
@@ -73,7 +71,7 @@ const GptSearchBar = () => {
           </button>
         </form>
       </div>
-      {movieNames && <GptSuggestions />}
+      {/* {movieNames && <GptSuggestions />} */}
     </>
   );
 };
